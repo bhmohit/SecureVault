@@ -18,5 +18,5 @@ This project was inspired by [KeePass](https://keepass.info/), a local password 
 
 ## Future Add-ons:
 -Adding the GUI using JavaFX.
-
+-Commenting and organising code
 
