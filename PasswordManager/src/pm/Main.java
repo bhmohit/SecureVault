@@ -1,94 +1,69 @@
 package pm;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Scanner;
 
 public class Main {
 	static Scanner sc = new Scanner(System.in);
-	static HashMap<String, ArrayList<String>> details = new HashMap<String, ArrayList<String>>();
+	static String url = "jdbc:mysql://localhost:3306/passwordmanager";
+	static String user = "root";
+	static String pass = "root";
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
+		System.out.print("Enter master password: ");
+		String masterPass = hash.toHexString(hash.getSHA(sc.next().trim()));
+		boolean isCorrect = masterPass.equals(masterPasswordHandler.getMasterPassword());
+		while (!isCorrect) {
+			System.out.println("Incorrect master password");
+			System.out.println("Forgot Password? y/n");
+			String entry = sc.next().trim().toLowerCase();
+			if (entry.equals("y")) {
+				System.out.println("Enter the 256-bit key provided to you: ");
+				String userKey = sc.next().trim();
+				if (userKey.equals(masterPasswordHandler.getKey())) {
+					isCorrect = true;
+					System.out.println("Enter new master password: ");
+					// set master password in data base
+					String newMasterPass = hash.toHexString(hash.getSHA(sc.next().trim()));
+					masterPasswordHandler.setMasterPassword(newMasterPass, userKey);
+					// generate new key
+					String newKey = masterPasswordHandler.generateKey();
+					masterPasswordHandler.setKey(newMasterPass, newKey);
+					System.out.println("This is your new key. Store it somewhere safe.");
+					System.out.println(newKey);
+				} else {
+					System.out.println("Incorrect key. Terminating program");
+					break;
+				}
+			} else {
+				System.out.println("Re-enter master password: ");
+				masterPass = hash.toHexString(hash.getSHA(sc.next().trim()));
+				isCorrect = masterPass.equals(masterPasswordHandler.getMasterPassword());
+			}
+		}
+		if (isCorrect) {
+			messages();
+			int choice = sc.nextInt();
+			do {
+				if (choice == 1) {
+					interactions.add();
+				} else if (choice == 2) {
+					interactions.get();
+				} else if (choice == 3) {
+					interactions.remove();
+				} else {
+					System.out.println("Number invalid. Enter Another number");
+				}
+				messages();
+				choice = sc.nextInt();
+			} while (choice != 4);
+		}
+	}
 
+	public static void messages() {
 		System.out.println("---------------------\nxxxxxxxxxxxxxxxxxxxx\n---------------------");
-		System.out.println("What would you like to do today?");
+		System.out.println("What would you like to do next?");
 		System.out.println("1. Add Password\n" + "2. Retrieve Password\n" + "3. Remove Password\n" + "4. Exit");
 		System.out.println("---------------------\nxxxxxxxxxxxxxxxxxxxx\n---------------------");
-		int choice = sc.nextInt();
-		do {
-			if (choice == 1) {
-				choice1();
-			} else if (choice == 2) {
-				choice2();
-			} else if (choice == 3) {
-				choice3();
-			} else {
-				System.out.println("Number invalid. Enter Another number");
-			}
-
-			System.out.println("---------------------\nxxxxxxxxxxxxxxxxxxxx\n---------------------");
-			System.out.println("What would you like to do next?");
-			System.out.println("1. Add Password\n" + "2. Retrieve Password\n" + "3. Remove Password\n" + "4. Exit");
-			System.out.println("---------------------\nxxxxxxxxxxxxxxxxxxxx\n---------------------");
-			choice = sc.nextInt();
-
-		} while (choice != 4);
-
-	}
-
-	public static void choice1() {
-		System.out.println("Enter software name");
-		String software = sc.next().toLowerCase();
-		System.out.println("Enter username");
-		String username = sc.next().toLowerCase();
-		System.out.println("Enter password");
-		String password = sc.next().toLowerCase();
-		if (details.containsKey(software)) {
-			ArrayList<String> currArray = details.get(software);
-			currArray.add(username);
-			currArray.add(password);
-			details.put(software, currArray);
-		} else {
-			details.put(software, new ArrayList(List.of(username, password)));
-		}
-		System.out.println("Data for " + software + " added");
-	}
-
-	public static void choice2() {
-		System.out.println("Enter software name");
-		String software = sc.next().toLowerCase();
-		System.out.println("---------------------\nxxxxxxxxxxxxxxxxxxxx\n---------------------");
-		System.out.println("Usernames\t\tPasswords");
-		ArrayList<String> userPass = details.get(software);
-		for (int i = 0; i < userPass.size(); i++) {
-			if (i % 2 == 0)
-				System.out.print(i + 1 + ". " + userPass.get(i));
-			else
-				System.out.println("\t\t" + userPass.get(i));
-		}
-	}
-
-	public static void choice3() {
-		System.out.println("Enter software name");
-		String software = sc.next().toLowerCase();
-		ArrayList<String> userPass = details.get(software);
-		if (userPass.size() > 2) {
-			System.out.println("Which passwords do you want to delete");
-			System.out.println("---------------------\nxxxxxxxxxxxxxxxxxxxx\n---------------------");
-			System.out.println("Usernames\t\tPasswords");
-			for (int i = 0; i < userPass.size(); i++) {
-				if (i % 2 == 0)
-					System.out.print(i + 1 + ". " + userPass.get(i));
-				else
-					System.out.println("\t\t" + userPass.get(i));
-			}
-			System.out.println("Enter the username you want to delete");
-			String usr = sc.next();
-		} else {
-			details.remove(software);
-		}
-
 	}
 
 }
