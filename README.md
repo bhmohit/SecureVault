@@ -8,15 +8,15 @@ This project was inspired by [KeePass](https://keepass.info/), a local password 
 -Encrypt all data that will be written into the database using AES(subject to change)<br>
 -Implement a GUI using JavaFX 
 
-##Updates in recent commits: 
+## Updates in recent commits: 
 -Added JDBC so that data can be stored, retrieved, and removed from a MySQL database<br>
--Added master password and forgot master password functionality. The master password and the key for reseting the master password is encrypted with SHA-256 and stored in the same database in the master table. <br>
+-Added master password and forgot master password functionality. The master password and the key for reseting the master password is encrypted with SHA-256 and stored in the same database in the master table. 
 
-##Problems with the current version:
+## Problems with the current version:
 -Passwords are not encrypted in the database. Solution: Encrypting the passwords with AES and salt or some other pollutant. <br>
--InputMismatchExceptions that arise due to Java being strongly typed. Solution: Add try catch statements to ensure correct input type. However, when a GUI is implemented this problem will not arise. <br>
+-InputMismatchExceptions that arise due to Java being strongly typed. Solution: Add try catch statements to ensure correct input type. However, when a GUI is implemented this problem will not arise. 
 
-##Future Add-ons:
+## Future Add-ons:
 -Adding the GUI using JavaFX.
 
 
