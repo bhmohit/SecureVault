@@ -17,6 +17,6 @@ This project was inspired by [KeePass](https://keepass.info/), a local password 
 -InputMismatchExceptions that arise due to Java being strongly typed. Solution: Add try catch statements to ensure correct input type. However, when a GUI is implemented this problem will not arise. 
 
 ## Future Add-ons:
--Adding the GUI using JavaFX.
+-Adding the GUI using JavaFX.<br>
 -Commenting and organising code
 
