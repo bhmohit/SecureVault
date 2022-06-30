@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.TableHandler">
+   <children>
+      <TableView fx:id="entryTable" editable="true" layoutY="43.0" prefHeight="357.0" prefWidth="600.0">
+        <columns>
+          <TableColumn fx:id="colId" prefWidth="54.0" text="ID" />
+          <TableColumn fx:id="colSoftware" prefWidth="137.0" text="Software" />
+            <TableColumn fx:id="colUsername" prefWidth="210.0" text="Username" />
+            <TableColumn fx:id="colPassword" prefWidth="204.0" text="Password" />
+        </columns>
+      </TableView>
+      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#addPassword" text="Add Password" />
+      <Button layoutX="346.0" layoutY="14.0" mnemonicParsing="false" onAction="#removePassword" text="Delete Password" />
+      <Button layoutX="175.0" layoutY="14.0" mnemonicParsing="false" onAction="#updatePassword" text="Update Password" />
+      <Button layoutX="527.0" layoutY="14.0" mnemonicParsing="false" onAction="#refreshTable" text="Refresh " />
+   </children>
+</AnchorPane>
