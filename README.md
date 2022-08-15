@@ -2,7 +2,7 @@
 
 This project was inspired by [KeePass](https://keepass.info/), a local password manager. 
 
-## The Works :gear: 
+
 
 
 
