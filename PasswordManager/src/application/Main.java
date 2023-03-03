@@ -10,7 +10,7 @@ public class Main extends Application {
 
 	public void start(Stage stage) {
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource("PasswordManager/src/application/ui/Main.fxml"));
 			Scene scene = new Scene(root);
 			stage.setTitle("Password Manager");
 			stage.setScene(scene);
