@@ -1,4 +1,4 @@
-# Password Manager :lock:
+# Secure Vault :lock:
 
 This project was inspired by [KeePass](https://keepass.info/), a local password manager. 
 
