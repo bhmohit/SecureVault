@@ -2,7 +2,7 @@
  * reset the password
  */
 
-package application;
+package com.securevault.securevault.model;
 
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
