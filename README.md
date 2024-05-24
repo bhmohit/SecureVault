@@ -3,7 +3,7 @@
 This project was inspired by [KeePass](https://keepass.info/), a local password manager. 
 
 
-## Restarting this project to have it use the SpringFramework ❗
+## Restarting this project to have it use the SpringFramework ❗ (View LTS branch to see the old Impl)
 
 
 
